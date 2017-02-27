@@ -13,9 +13,8 @@ public class WelcomeController {
 
     @RequestMapping("/aa")
     public String welcome(Map<String, Object> model) {
-        System.out.println("I am here");
+        System.out.println("entering in the controller: "+getClass().getSimpleName());
         model.put("message", "ciao enrico");
-        System.out.println("inserted");
         return "welcome";
     }
 }
