@@ -5,7 +5,9 @@ import org.enricogiurin.poc.springboot.model.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -18,12 +20,13 @@ public class PersonController {
     @Autowired
     private PersonDao personDao;
 
-
-    @RequestMapping(value="/people")
-    @ResponseBody
-    public List<Person> getAll() {
+    // @ResponseBody
+    @RequestMapping(value = "/people", method = RequestMethod.GET)
+    public String getAll(Model model) {
         System.out.println("entered in the controller "+getClass().getSimpleName());
-        return personDao.getAll();
+        List<Person> people = personDao.getAll();
+        model.addAttribute("people", people);
+        return "listPeople";
     }
 
 }
