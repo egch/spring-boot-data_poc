@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created by enrico on 2/27/17.
+ * Copied from this:
+ * https://github.com/netgloo/spring-boot-samples/tree/master/spring-boot-mysql-jpa-hibernate
  */
 @Configuration
 @EnableTransactionManagement

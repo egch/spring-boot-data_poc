@@ -11,9 +11,8 @@ import java.util.Map;
 @Controller
 public class WelcomeController {
 
-    @RequestMapping("/aa")
+    @RequestMapping("/welcome")
     public String welcome(Map<String, Object> model) {
-        System.out.println("entering in the controller: "+getClass().getSimpleName());
         model.put("message", "ciao enrico");
         return "welcome";
     }
