@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries(value = {@NamedQuery(name = "Person.findByPartialFirstName", query =
         "from Person p where upper(p.firstName) like upper(?) order by p.firstName asc")})
 public class Person {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

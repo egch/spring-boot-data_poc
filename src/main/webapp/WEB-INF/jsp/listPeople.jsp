@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html lang="en">
 <head>
 <title>people</title>
@@ -13,5 +14,6 @@
           </c:forEach>
         </ul>
 		</div>
+		 <a href="<spring:url value="/person_create.html" />">create</a>
 </body>
 </html>
