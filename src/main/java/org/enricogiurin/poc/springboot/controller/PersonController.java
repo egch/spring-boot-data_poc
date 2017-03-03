@@ -51,10 +51,21 @@ public class PersonController {
         return "redirect:/person";
     }
 
+
+    @RequestMapping(value = "/person/delete", method = RequestMethod.GET)
+    public String deleteUser(@RequestParam(value = "id", required =
+            true) Long id) {
+
+        Person person = null;
+        person = personRepository.findOne(Long.valueOf(id));
+        personRepository.delete(person);
+        return "redirect:/person";
+    }
+
     @RequestMapping(value = "/person/new", method = RequestMethod.GET)
     public String createUserView(@RequestParam(value = "id", required =
             false) Long id, @ModelAttribute("form") @Valid PersonCreateForm form) {
-        if(id!=null){
+        if (id != null) {
             Person person = personRepository.findOne(id);
             form.setLastName(person.getLastName());
             form.setFirstName(person.getFirstName());

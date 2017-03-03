@@ -14,6 +14,7 @@
           <c:forEach var="person" items="${people}">
             <li><c:out value="${person.firstName} ${person.lastName}" />
              <a href="<spring:url value="/person/new?id=${person.id}" />">update</a>
+             <a href="<spring:url value="/person/delete?id=${person.id}" />">delete</a>
             </li>
           </c:forEach>
         </ol>
