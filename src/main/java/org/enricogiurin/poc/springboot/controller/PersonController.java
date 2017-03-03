@@ -39,8 +39,9 @@ public class PersonController {
             return "jsp/person/createPerson";
         }
         Person person = null;
-        if (form.getId() != null) {
-            person = personRepository.findOne(Long.valueOf(form.getId()));
+        String formId = form.getId();
+        if (formId != null && formId.length()>0) {
+            person = personRepository.findOne(Long.valueOf(formId));
         } else {
             person = new Person();
         }

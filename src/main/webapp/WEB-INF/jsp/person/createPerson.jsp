@@ -14,12 +14,12 @@
         <form:errors path="" element="div" />
         <form:hidden path="id"/>
         <div>
-            <form:label path="firstName">First Name</form:label>
+            <form:label path="firstName"><spring:message code="person.firstName" /></form:label>
             <form:input path="firstName" />
             <form:errors path="firstName" />
         </div>
         <div>
-            <form:label path="lastName">Last Name</form:label>
+            <form:label path="lastName"><spring:message code="person.lastName" /></form:label>
             <form:input path="lastName" />
             <form:errors path="lastName" />
         <div>
