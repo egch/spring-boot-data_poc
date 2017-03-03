@@ -5,7 +5,7 @@
 <body>
     <h1>Create new user</h1>
 
-    <form:form method="POST" action="/person_create.html" modelAttribute="form">
+    <form:form method="POST" action="/person/new" modelAttribute="form">
         <form:errors path="" element="div" />
 
         <div>

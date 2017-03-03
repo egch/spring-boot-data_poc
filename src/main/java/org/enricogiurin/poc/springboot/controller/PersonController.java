@@ -23,32 +23,31 @@ public class PersonController {
     private PersonRepository personRepository;
 
     // @ResponseBody
-    @RequestMapping(value = "/people.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/person", method = RequestMethod.GET)
     public String getAll(Model model) {
-        System.out.println("entered in the controller "+getClass().getSimpleName());
         //Iterable<Person> people = personRepository.findByPartialFirstName("%enr%");
         Iterable<Person> people = personRepository.findAll();
         model.addAttribute("people", people);
-        return "listPeople";
+        return "jsp/person/listPerson";
     }
 
 
-    @RequestMapping(value = "/person_create.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/person/new", method = RequestMethod.POST)
     public String createUser(@ModelAttribute("form") @Valid PersonCreateForm form, BindingResult result) {
         if (result.hasErrors()) {
-            return "createPerson";
+            return "jsp/person/createPerson";
         }
         Person person = new Person();
         person.setFirstName(form.getFirstName());
         person.setLastName(form.getLastName());
         personRepository.save(person);
 
-        return "redirect:/people.html";
+        return "redirect:/person";
     }
 
-    @RequestMapping(value = "/person_create.html", method = RequestMethod.GET)
-    public String createUserView(@ModelAttribute("form") @Valid PersonCreateForm form, BindingResult result) {
-        return "createPerson";
+    @RequestMapping(value = "/person/new", method = RequestMethod.GET)
+    public String createUserView(@ModelAttribute("form") @Valid PersonCreateForm form) {
+        return "jsp/person/createPerson";
     }
 
 

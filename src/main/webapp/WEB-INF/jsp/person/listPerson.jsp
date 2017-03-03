@@ -14,6 +14,6 @@
           </c:forEach>
         </ul>
 		</div>
-		 <a href="<spring:url value="/person_create.html" />">create</a>
+		 <a href="<spring:url value="/person/new" />">create</a>
 </body>
 </html>
