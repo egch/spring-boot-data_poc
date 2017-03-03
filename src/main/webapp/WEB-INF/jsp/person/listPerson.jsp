@@ -10,10 +10,12 @@
 		<div>
 		<ul>
           <c:forEach var="person" items="${people}">
-            <li><c:out value="${person.firstName} ${person.lastName}" /></li>
+            <li><c:out value="${person.firstName} ${person.lastName}" />
+             <a href="<spring:url value="/person/new?id=${person.id}" />">update</a>
+            </li>
           </c:forEach>
         </ul>
 		</div>
-		 <a href="<spring:url value="/person/new" />">create</a>
+		 <a href="<spring:url value="/person/new" />">Create New Person</a>
 </body>
 </html>

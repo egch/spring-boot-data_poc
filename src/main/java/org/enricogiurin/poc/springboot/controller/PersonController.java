@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -37,7 +38,12 @@ public class PersonController {
         if (result.hasErrors()) {
             return "jsp/person/createPerson";
         }
-        Person person = new Person();
+        Person person = null;
+        if (form.getId() != null) {
+            person = personRepository.findOne(Long.valueOf(form.getId()));
+        } else {
+            person = new Person();
+        }
         person.setFirstName(form.getFirstName());
         person.setLastName(form.getLastName());
         personRepository.save(person);
@@ -46,7 +52,14 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/person/new", method = RequestMethod.GET)
-    public String createUserView(@ModelAttribute("form") @Valid PersonCreateForm form) {
+    public String createUserView(@RequestParam(value = "id", required =
+            false) Long id, @ModelAttribute("form") @Valid PersonCreateForm form) {
+        if(id!=null){
+            Person person = personRepository.findOne(id);
+            form.setLastName(person.getLastName());
+            form.setFirstName(person.getFirstName());
+            form.setId(String.valueOf(person.getId()));
+        }
         return "jsp/person/createPerson";
     }
 

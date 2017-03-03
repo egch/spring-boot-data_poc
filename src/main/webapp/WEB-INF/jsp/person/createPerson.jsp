@@ -7,7 +7,7 @@
 
     <form:form method="POST" action="/person/new" modelAttribute="form">
         <form:errors path="" element="div" />
-
+        <form:hidden path="id"/>
         <div>
             <form:label path="firstName">First Name</form:label>
             <form:input path="firstName" />
