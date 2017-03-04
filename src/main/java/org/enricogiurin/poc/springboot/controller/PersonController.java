@@ -1,6 +1,7 @@
 package org.enricogiurin.poc.springboot.controller;
 
 import org.enricogiurin.poc.springboot.form.PersonCreateForm;
+import org.enricogiurin.poc.springboot.form.PersonSearchForm;
 import org.enricogiurin.poc.springboot.model.Person;
 import org.enricogiurin.poc.springboot.model.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,20 @@ public class PersonController {
             form.setId(String.valueOf(person.getId()));
         }
         return "jsp/person/createPerson";
+    }
+
+    @RequestMapping(value = "/person/search", method = RequestMethod.POST)
+    public String search(@ModelAttribute("form") @Valid PersonSearchForm form, BindingResult result, Model model) {
+        Person person = personRepository.findByFirstNameAndLastName(form.getFirstName(), form.getLastName());
+        model.addAttribute("person", person);
+        return "jsp/person/personSummary";
+    }
+
+
+
+    @RequestMapping(value = "/person/search", method = RequestMethod.GET)
+    public String createUser(@ModelAttribute("form") @Valid PersonSearchForm form) {
+        return "jsp/person/searchPerson";
     }
 
 

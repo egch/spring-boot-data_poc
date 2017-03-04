@@ -8,6 +8,6 @@ import java.util.List;
  * Created by enrico on 2/28/17.
  */
 public interface PersonRepository extends CrudRepository<Person, Long> {
-    Person findByFirstName(String firstName);
+    Person findByFirstNameAndLastName(String firstName, String lastName);
     List<Person> findByPartialFirstName(String partialFirstName);
 }
