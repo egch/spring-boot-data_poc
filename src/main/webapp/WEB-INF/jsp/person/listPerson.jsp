@@ -15,6 +15,7 @@
             <li><c:out value="${person.firstName} ${person.lastName}" />
              <a href="<spring:url value="/person/${person.id}/edit" />"><spring:message code="edit" /></a>
              <a href="<spring:url value="/person/${person.id}/delete" />"><spring:message code="delete" /></a>
+             <a href="<spring:url value="/person/${person.id}" />"><spring:message code="details" /></a>
             </li>
           </c:forEach>
         </ol>

@@ -3,16 +3,22 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html lang="en">
 <head>
-<title>Person Details</title>
+<title><spring:message code="person.summary" /></title>
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
 </head>
 
 <body>
 		<div class='container'>
-		<h2>Person Details</h2>
-		<c:out value="${person.firstName}" /><br>
-		<c:out value="${person.lastName}" />
-
+		    <h2><spring:message code="person.summary" /></h2>
+            <p>
+                <spring:message code="person.firstName" />: <c:out value="${person.firstName}" />
+            </p>
+            <p>
+                <spring:message code="person.lastName" />: <c:out value="${person.lastName}" />
+            </p>
+            <p>
+                <spring:message code="person.birthdate" />: <c:out value="${person.birthdate}" />
+            </p>
 		</div>
 
 </body>
