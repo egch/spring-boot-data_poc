@@ -3,14 +3,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-<title><spring:message code="person.create" /></title>
+<title><spring:message code="person.editPerson" /></title>
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class='container'>
-    <h4><spring:message code="person.create" /></h4>
+    <h4><spring:message code="person.editPerson" /></h4>
 
-    <spring:url value="/person" var="actionURL"/>
+    <spring:url value="/person/${form.id}" var="actionURL"/>
 
     <form:form method="POST" action="${actionURL}"  modelAttribute="form">
         <form:errors path="" element="div" />

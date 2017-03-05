@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 /**
  * Created by enrico on 3/3/17.
  */
-public class PersonCreateForm {
+public class PersonForm {
 
     @Size(max = 64)
     private String id;
