@@ -11,6 +11,14 @@
   <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
 <title><spring:message code="person.create" /></title>
+ <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1')
+            .datetimepicker({
+               format: 'YYYY-MM-DD'
+             });
+         });
+ </script>
 </head>
 <body>
     <div class='container'>
@@ -30,25 +38,16 @@
                 <form:input path="lastName" />
                 <form:errors path="lastName" />
             </div>
-
-                <div class="row">
-                    <div class='col-sm-6'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
-                            <form:input path="birthdate" class="form-control"/>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker1').datetimepicker();
-                        });
-                    </script>
-                </div>
-
+            <div>
+                <form:label path="birthdate"><spring:message code="person.birthdate" /></form:label>
+                <div class='input-group date' id='datetimepicker1'>
+                                <form:input path="birthdate" class="form-control"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                 </div>
+                <form:errors path="birthdate" />
+            </div>
 
         <input type="submit" />
         </form:form>

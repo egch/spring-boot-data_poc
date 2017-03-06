@@ -2,7 +2,8 @@ package org.enricogiurin.poc.springboot.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.time.LocalDate;
+
 
 /**
  * Created by enrico on 2/27/17.
@@ -22,8 +23,9 @@ public class Person {
     private String firstName;
     @NotNull
     private String lastName;
+
     @NotNull
-    private String birthdate;
+    private LocalDate birthdate;
 
     public long getId() {
         return id;
@@ -49,13 +51,15 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
+
+
 
 
 }

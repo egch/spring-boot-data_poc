@@ -4,6 +4,7 @@ import org.enricogiurin.poc.springboot.form.PersonForm;
 import org.enricogiurin.poc.springboot.form.PersonSearchForm;
 import org.enricogiurin.poc.springboot.model.Person;
 import org.enricogiurin.poc.springboot.model.PersonRepository;
+import org.enricogiurin.poc.springboot.util.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,7 +90,7 @@ public class PersonController {
         } else {
             person = new Person();
         }
-        person.setBirthdate(form.getBirthdate());
+        person.setBirthdate(Converter.stringToLocalDate(form.getBirthdate()));
         person.setFirstName(form.getFirstName());
         person.setLastName(form.getLastName());
         personRepository.save(person);
