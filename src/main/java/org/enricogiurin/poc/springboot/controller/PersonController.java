@@ -23,17 +23,18 @@ public class PersonController {
     private PersonRepository personRepository;
 
 
-    @RequestMapping(value = "/person/search", method = RequestMethod.POST)
-    public String search(@ModelAttribute("form") @Valid PersonSearchForm form, BindingResult result, Model model) {
+    @PostMapping("/search")
+    public String searchView(@ModelAttribute("form") @Valid PersonSearchForm form, BindingResult result, Model model) {
         Person person = personRepository.findByFirstNameAndLastName(form.getFirstName(), form.getLastName());
         model.addAttribute("person", person);
         return "jsp/person/personSummary";
     }
 
+    @GetMapping(value = "/search")
+    public String search(@ModelAttribute("form") @Valid PersonSearchForm form, BindingResult result) {
+        return "jsp/person/searchPerson";
+    }
 
-    /*
-    ****************** URL RESTFUL ************************************
-     */
 
     @GetMapping("/{personId}")
     public String getPerson(@PathVariable Long personId, Model model) {
@@ -79,7 +80,6 @@ public class PersonController {
     public String editPerson(@PathVariable Long personId,
                              @ModelAttribute("form") @Valid PersonForm form,
                              BindingResult result) {
-
         Person person = null;
         if (personId != null) {
             person = personRepository.findOne(personId);
@@ -111,15 +111,5 @@ public class PersonController {
         personRepository.delete(person);
         return "redirect:/person";
     }
-
-
-
-
-
-   /* @RequestMapping(value = "/person/search", method = RequestMethod.GET)
-    public String createUser(@ModelAttribute("form") @Valid PersonSearchForm form) {
-        return "jsp/person/searchPerson";
-    }*/
-
 
 }
