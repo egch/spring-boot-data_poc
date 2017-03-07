@@ -48,7 +48,8 @@ public class PersonController {
     public String getAll(Model model) {
         Iterable<Person> people = personRepository.findAll();
         model.addAttribute("people", people);
-        return "jsp/person/listPerson";
+       // return "jsp/person/listPerson";
+        return "listPerson";
     }
 
     @GetMapping("/{personId}/edit")
