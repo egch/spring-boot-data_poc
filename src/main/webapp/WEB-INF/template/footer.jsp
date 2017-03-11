@@ -1,1 +1,3 @@
-<h3>footer</h3>
+<footer class="container-fluid text-center">
+  <p>springboot poc</p>
+</footer>

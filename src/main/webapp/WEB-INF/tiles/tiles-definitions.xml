@@ -13,5 +13,17 @@
     <definition name="listPerson" extends="defaultTemplate">
         <put-attribute name="body" value="/WEB-INF/jsp/person/listPerson.jsp" />
     </definition>
+    <definition name="createPerson" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/person/createPerson.jsp" />
+    </definition>
+    <definition name="editPerson" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/person/editPerson.jsp" />
+    </definition>
+    <definition name="personSummary" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/person/personSummary.jsp" />
+    </definition>
+    <definition name="searchPerson" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/person/searchPerson.jsp" />
+    </definition>
 
 </tiles-definitions>

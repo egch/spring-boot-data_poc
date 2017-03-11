@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
-<head>
-<title>Search  User</title>
-<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
-</head>
-<body>
-    <div class='container'>
+
+    <div class="container-fluid">
     <h4>Search User</h4>
 
     <form:form method="POST" action="/person/search" modelAttribute="form">
@@ -28,5 +23,3 @@
         </div>
     </form:form>
     </div>
-</body>
-</html>

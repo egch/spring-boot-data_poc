@@ -1,1 +1,3 @@
-<h1>I am the body</h1>
+<footer class="container-fluid text-center">
+  <p>spring-boot-poc</p>
+</footer>

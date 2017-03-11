@@ -28,12 +28,12 @@ public class PersonController {
     public String searchView(@ModelAttribute("form") @Valid PersonSearchForm form, BindingResult result, Model model) {
         Person person = personRepository.findByFirstNameAndLastName(form.getFirstName(), form.getLastName());
         model.addAttribute("person", person);
-        return "jsp/person/personSummary";
+        return "personSummary";
     }
 
     @GetMapping(value = "/search")
     public String search(@ModelAttribute("form") @Valid PersonSearchForm form, BindingResult result) {
-        return "jsp/person/searchPerson";
+        return "searchPerson";
     }
 
 
@@ -41,7 +41,7 @@ public class PersonController {
     public String getPerson(@PathVariable Long personId, Model model) {
         Person person = personRepository.findOne(personId);
         model.addAttribute("person", person);
-        return "jsp/person/personSummary";
+        return "personSummary";
     }
 
     @GetMapping(value = "")
@@ -66,13 +66,13 @@ public class PersonController {
         form.setLastName(person.getLastName());
         form.setFirstName(person.getFirstName());
 
-        return "jsp/person/editPerson";
+        return "editPerson";
     }
 
     @GetMapping("/new")
     public String newPersonView(@ModelAttribute("form") @Valid PersonForm form,
                                  BindingResult result) {
-        return "jsp/person/createPerson";
+        return "createPerson";
     }
 
 
