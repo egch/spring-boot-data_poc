@@ -1,26 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-    <div class="container-fluid">
-    <h4><spring:message code="person.editPerson" /></h4>
 
-    <spring:url value="/person/${form.id}" var="actionURL"/>
+          <script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker1')
+                    .datetimepicker({
+                       format: 'YYYY-MM-DD'
+                     });
+                 });
+          </script>
 
-    <form:form method="POST" action="${actionURL}"  modelAttribute="form">
-        <form:errors path="" element="div" />
+          <spring:url value="/person/${form.id}" var="actionURL"/>
+          <div class="container-fluid">
+            <h3><spring:message code="person.editPerson" /></h3>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
 
-        <div>
-            <form:label path="firstName"><spring:message code="person.firstName" /></form:label>
-            <form:input path="firstName" />
-            <form:errors path="firstName" />
+                    <form:form method="POST" action="${actionURL}"  modelAttribute="form">
+                  <div class="form-group form-group-lg">
+                    <form:label path="firstName" class="control-label"><spring:message code="person.firstName"  /></form:label>
+                    <form:input path="firstName" class="form-control"/>
+                  </div>
+                  <div class="form-group form-group-lg">
+                      <form:label path="lastName" class="control-label"><spring:message code="person.lastName"  /></form:label>
+                      <form:input path="lastName" class="form-control"/>
+                  </div>
+                  <div class="form-group form-group-lg">
+                    <form:label path="birthdate" class="control-label"><spring:message code="person.birthdate" /></form:label>
+                    <div class='input-group date' id='datetimepicker1'>
+                      <form:input path="birthdate" class="form-control"/>
+                        <span class="input-group-addon">
+                         <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div>
+                      <button class="btn btn-primary " name="submit" type="submit">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form:form>
+              </div>
+            </div>
         </div>
-        <div>
-            <form:label path="lastName"><spring:message code="person.lastName" /></form:label>
-            <form:input path="lastName" />
-            <form:errors path="lastName" />
-        <div>
-            <input type="submit" />
-        </div>
-    </form:form>
-    </div>

@@ -2,24 +2,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
  <div class="container-fluid text-center">
-   <div class="row content">
-     <div class="col-sm-2 sidenav">
-     </div>
-     <div class="col-sm-8 text-left">
-     <h2><spring:message code="person.list" /></h2>
-     <ol>
-       <c:forEach var="person" items="${people}">
-         <li><c:out value="${person.firstName} ${person.lastName}" />
-          <a href="<spring:url value="/person/${person.id}/edit" />"><spring:message code="edit" /></a>
-          <a href="<spring:url value="/person/${person.id}/delete" />"><spring:message code="delete" /></a>
-          <a href="<spring:url value="/person/${person.id}" />"><spring:message code="details" /></a>
-         </li>
-       </c:forEach>
-     </ol>
-      <a href="<spring:url value="/person/new" />"><spring:message code="person.create" /></a>
-
-     </div>
-     <div class="col-sm-2 sidenav">
-     </div>
-   </div>
+          <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                     <thead>
+                         <th><spring:message code="person.firstName"  /></th>
+                         <th><spring:message code="person.lastName"  /></th>
+                         <th><spring:message code="person.birthdate"  /></th>
+                         <th><spring:message code="edit"  /></th>
+                         <th><spring:message code="delete"  /></th>
+                     </thead>
+                     <tbody>
+                         <c:forEach var="person" items="${people}">
+                             <tr>
+                                  <td><c:out value="${person.firstName}" /></td>
+                                  <td><c:out value="${person.lastName}" /></td>
+                                  <td><c:out value="${person.birthdate}" /></td>
+                                  <td><p data-placement="top" data-toggle="tooltip" title="<spring:message code="edit"  />">
+                                      <a href="/person/${person.id}/edit" class="btn btn-primary btn-xs" ><span class="glyphicon glyphicon-trash"></span></a></p>
+                                  </td>
+                                  <td><p data-placement="top" data-toggle="tooltip" title="<spring:message code="delete"  />">
+                                    <a href="/person/${person.id}/delete" class="btn btn-danger btn-xs" ><span class="glyphicon glyphicon-trash"></span></a></p>
+                                  </td>
+                              </tr>
+                         </c:forEach>
+                     </tbody>
+                </table>
+          </div>
  </div>
+
+
+
+
+
+

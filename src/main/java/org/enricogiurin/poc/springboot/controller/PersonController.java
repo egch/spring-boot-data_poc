@@ -65,6 +65,7 @@ public class PersonController {
         }
         form.setLastName(person.getLastName());
         form.setFirstName(person.getFirstName());
+        form.setBirthdate(Converter.localDateToString(person.getBirthdate()));
 
         return "editPerson";
     }
