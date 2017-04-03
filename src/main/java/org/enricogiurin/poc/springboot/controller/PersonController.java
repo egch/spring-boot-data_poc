@@ -71,8 +71,7 @@ public class PersonController {
     }
 
     @GetMapping("/new")
-    public String newPersonView(@ModelAttribute("form") @Valid PersonForm form,
-                                 BindingResult result) {
+    public String newPersonView(@ModelAttribute("form") PersonForm form) {
         return "createPerson";
     }
 
@@ -82,7 +81,10 @@ public class PersonController {
     @PostMapping(value = "/{personId}")
     public String editPerson(@PathVariable Long personId,
                              @ModelAttribute("form") @Valid PersonForm form,
-                             BindingResult result) {
+                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "createPerson";
+        }
         Person person = null;
         if (personId != null) {
             person = personRepository.findOne(personId);

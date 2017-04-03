@@ -1,5 +1,6 @@
 package org.enricogiurin.poc.springboot.form;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -9,9 +10,13 @@ public class PersonForm {
 
     @Size(max = 64)
     private String id;
-
+    @NotNull
+    @Size(min=2, max=30)
     private String firstName;
+    @NotNull
+    @Size(min=2, max=30)
     private String lastName;
+    @NotNull
     private String birthdate;
 
     public String getBirthdate() {

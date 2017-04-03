@@ -18,6 +18,7 @@
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-12">
             <form:form method="POST" action="/person"  modelAttribute="form">
+            <form:errors path="*" cssClass="alert alert-danger" element="div"/>
               <div class="form-group form-group-lg">
                 <form:label path="firstName" class="control-label"><spring:message code="person.firstName"  /></form:label>
                 <input class="form-control" id="firstName" name="firstName" type="text"/>
