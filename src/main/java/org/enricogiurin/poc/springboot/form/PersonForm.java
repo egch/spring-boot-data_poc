@@ -11,12 +11,13 @@ public class PersonForm {
     @Size(max = 64)
     private String id;
     @NotNull
-    @Size(min=2, max=30)
+    @Size(min=2, max=30, message = "length of firstName must be between 2 and 30")
     private String firstName;
     @NotNull
-    @Size(min=2, max=30)
+    @Size(min=2, max=30, message = "length of lastName must be between 2 and 30")
     private String lastName;
     @NotNull
+    @Size(min=10, max=10, message = "invalid birthdate")
     private String birthdate;
 
     public String getBirthdate() {

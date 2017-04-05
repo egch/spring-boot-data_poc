@@ -54,7 +54,7 @@ public class PersonController {
 
     @GetMapping("/{personId}/edit")
     public String editPersonView(@PathVariable Long personId,
-                                 @ModelAttribute("form") @Valid PersonForm form,
+                                 @ModelAttribute("form") PersonForm form,
                                  BindingResult result) {
         Person person = null;
         if (personId != null) {
@@ -83,7 +83,10 @@ public class PersonController {
                              @ModelAttribute("form") @Valid PersonForm form,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "createPerson";
+            if (personId == null) {
+                return "createPerson";
+            }
+            return "editPerson";
         }
         Person person = null;
         if (personId != null) {
