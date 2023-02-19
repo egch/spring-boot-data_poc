@@ -1,2 +1,14 @@
-# spring-boot-data_poc  [![Build Status](https://api.travis-ci.org/egch/spring-boot-data_poc.svg?branch=master)](https://travis-ci.org/egch/spring-boot-data_poc)
+# spring-boot-data POC
+## Prerequisites
+
+- jdk 19
+- maven 3.6.1 or higher
+- docker 1.6.0 or higher (<https://www.docker.com/>)
+
+
+## Docker
+
+Starting Postgres
+```shell
+$ docker compose up -d
 
