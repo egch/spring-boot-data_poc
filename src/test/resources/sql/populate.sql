@@ -1,0 +1,1 @@
+insert into POST (ID, CONTENT) values (1, 'Hello World');
