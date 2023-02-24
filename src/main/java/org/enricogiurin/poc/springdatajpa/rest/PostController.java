@@ -3,6 +3,7 @@ package org.enricogiurin.poc.springdatajpa.rest;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.enricogiurin.poc.springdatajpa.dto.Comment;
 import org.enricogiurin.poc.springdatajpa.dto.Post;
 import org.enricogiurin.poc.springdatajpa.service.PostService;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
     private final PostService postService;
 
+
     @RequestMapping(
             method = {RequestMethod.PUT},
             produces = "application/json"
@@ -27,6 +29,16 @@ public class PostController {
     public ResponseEntity<String> add(@RequestBody Post post) {
         Long result = postService.addPost(post.getContent());
         return new ResponseEntity<>("created new post with id: "+result, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            method = {RequestMethod.PUT},
+            produces = "application/json",
+            value = "/{postId}/comments"
+    )
+    public ResponseEntity<String> add(@RequestBody Comment comment, @PathVariable Long postId) {
+        Long result = postService.addComment(comment.getContent(), postId);
+        return new ResponseEntity<>("created new comment with id: "+result, HttpStatus.CREATED);
     }
 
     @RequestMapping(

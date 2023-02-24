@@ -1,6 +1,7 @@
 package org.enricogiurin.poc.springdatajpa.service;
 
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
+import org.enricogiurin.poc.springdatajpa.repository.CommentRepository;
 import org.enricogiurin.poc.springdatajpa.repository.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,11 +18,14 @@ class PostServiceTest {
     @Mock
     PostRepository postRepository;
 
+    @Mock
+    CommentRepository commentRepository;
+
     PostService postService;
 
     @BeforeEach
     void setUp() {
-        this.postService = new PostService(postRepository);
+        this.postService = new PostService(postRepository, commentRepository);
     }
 
     @Test
