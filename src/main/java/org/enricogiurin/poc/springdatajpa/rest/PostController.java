@@ -34,9 +34,9 @@ public class PostController {
     @RequestMapping(
             method = {RequestMethod.PUT},
             produces = "application/json",
-            value = "/{postId}/comments"
+            value = "/{postId}/comment"
     )
-    public ResponseEntity<String> add(@RequestBody Comment comment, @PathVariable Long postId) {
+    public ResponseEntity<String> addComment(@RequestBody Comment comment, @PathVariable Long postId) {
         Long result = postService.addComment(comment.getContent(), postId);
         return new ResponseEntity<>("created new comment with id: "+result, HttpStatus.CREATED);
     }

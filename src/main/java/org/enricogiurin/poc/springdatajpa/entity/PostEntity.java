@@ -28,7 +28,7 @@ public class PostEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column(name="CONTENT")
+    @Column(name="CONTENT", columnDefinition="TEXT")
     private String content;
 
     @OneToMany(mappedBy="post", orphanRemoval = true)
