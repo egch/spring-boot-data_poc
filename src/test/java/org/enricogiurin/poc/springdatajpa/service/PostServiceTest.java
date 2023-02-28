@@ -1,11 +1,13 @@
 package org.enricogiurin.poc.springdatajpa.service;
 
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
+import org.enricogiurin.poc.springdatajpa.mapper.PostMapper;
 import org.enricogiurin.poc.springdatajpa.repository.CommentRepository;
 import org.enricogiurin.poc.springdatajpa.repository.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -25,7 +27,8 @@ class PostServiceTest {
 
     @BeforeEach
     void setUp() {
-        this.postService = new PostService(postRepository, commentRepository);
+        PostMapper mapper = Mappers.getMapper(PostMapper.class);
+        this.postService = new PostService(postRepository, commentRepository, mapper);
     }
 
     @Test

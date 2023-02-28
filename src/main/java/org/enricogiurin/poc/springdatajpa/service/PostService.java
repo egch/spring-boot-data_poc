@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.enricogiurin.poc.springdatajpa.dto.Post;
 import org.enricogiurin.poc.springdatajpa.entity.CommentEntity;
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
+import org.enricogiurin.poc.springdatajpa.mapper.PostMapper;
 import org.enricogiurin.poc.springdatajpa.repository.CommentRepository;
 import org.enricogiurin.poc.springdatajpa.repository.PostRepository;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class PostService {
     private final PostRepository postRepository;
 
     private final CommentRepository commentRepository;
+
+    private final PostMapper postMapper;
 
     public Long addPost(String contents){
         PostEntity post = PostEntity.builder()
@@ -42,8 +45,6 @@ public class PostService {
 
     public Post find(Long id){
         PostEntity postEntity = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id " + id + " not present"));
-        return Post.builder()
-                .content(postEntity.getContent())
-                .build();
+        return postMapper.map(postEntity);
     }
 }
