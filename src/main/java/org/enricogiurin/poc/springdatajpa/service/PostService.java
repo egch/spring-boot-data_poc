@@ -20,9 +20,9 @@ public class PostService {
 
     private final PostMapper postMapper;
 
-    public Long addPost(String contents){
+    public Long addPost(String content){
         PostEntity post = PostEntity.builder()
-                .content(contents)
+                .content(content)
                 .build();
         PostEntity save = postRepository.save(post);
         log.info("Created a new post with id: {}", save.getId());
