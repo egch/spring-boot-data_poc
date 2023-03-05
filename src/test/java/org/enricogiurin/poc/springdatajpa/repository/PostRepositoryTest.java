@@ -45,7 +45,7 @@ class PostRepositoryTest {
     void findById(){
         PostEntity postEntity = postRepository.findById(1L).orElseThrow(RuntimeException::new);
         assertThat(postEntity).isNotNull();
-        assertThat(postEntity.getContent()).isEqualTo("Italians Do It Better");
+        assertThat(postEntity.getContent()).isEqualTo("Red is the best color");
         assertThat(postEntity.getComments()).hasSize(2);
     }
 
