@@ -1,10 +1,14 @@
 package org.enricogiurin.poc.springdatajpa.rest;
 
-import org.enricogiurin.poc.springdatajpa.dto.Post;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.LinkedHashSet;
 import org.enricogiurin.poc.springdatajpa.entity.CommentEntity;
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
-import org.enricogiurin.poc.springdatajpa.mapper.MapperFactory;
-import org.enricogiurin.poc.springdatajpa.mapper.PostMapper;
 import org.enricogiurin.poc.springdatajpa.service.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,24 +21,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @WebMvcTest
 @AutoConfigureMockMvc
-@ContextConfiguration(classes = {PostController.class, MapperFactory.class})
+@ContextConfiguration(classes = {PostController.class})
 class PostControllerTest {
-
-    @Autowired
-    PostMapper postMapper;
 
     @Autowired
     MockMvc mockMvc;
@@ -60,7 +50,7 @@ class PostControllerTest {
         //String contentAsString = mvcResult.getResponse().getContentAsString();
     }
 
-    Post buildPost(){
+    PostEntity buildPost(){
         PostEntity postEntity = PostEntity.builder()
                 .content("post comment")
                 .build();
@@ -72,7 +62,7 @@ class PostControllerTest {
                 .content("comment two")
                 .build());
         postEntity.setComments(comments);
-        return postMapper.map(postEntity);
+        return postEntity;
 
     }
 
