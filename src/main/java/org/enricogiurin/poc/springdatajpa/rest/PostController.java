@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.enricogiurin.poc.springdatajpa.dto.Comment;
 import org.enricogiurin.poc.springdatajpa.dto.Post;
+import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
 import org.enricogiurin.poc.springdatajpa.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +47,8 @@ public class PostController {
             produces = "application/json",
             value = "/{postId}"
     )
-    public ResponseEntity<Post> get(@PathVariable Long postId) {
-        Post result;
+    public ResponseEntity<PostEntity> get(@PathVariable Long postId) {
+        PostEntity result;
         try {
             result = postService.find(postId);
         } catch (Exception e) {

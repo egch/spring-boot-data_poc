@@ -1,19 +1,17 @@
 package org.enricogiurin.poc.springdatajpa.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
-import org.enricogiurin.poc.springdatajpa.mapper.PostMapper;
 import org.enricogiurin.poc.springdatajpa.repository.CommentRepository;
 import org.enricogiurin.poc.springdatajpa.repository.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PostServiceTest {
@@ -27,8 +25,7 @@ class PostServiceTest {
 
     @BeforeEach
     void setUp() {
-        PostMapper mapper = Mappers.getMapper(PostMapper.class);
-        this.postService = new PostService(postRepository, commentRepository, mapper);
+        this.postService = new PostService(postRepository, commentRepository);
     }
 
     @Test
