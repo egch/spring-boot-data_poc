@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import org.enricogiurin.poc.springdatajpa.entity.CommentEntity;
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
 import org.enricogiurin.poc.springdatajpa.service.PostService;
@@ -54,7 +54,7 @@ class PostControllerTest {
         PostEntity postEntity = PostEntity.builder()
                 .content("post comment")
                 .build();
-        LinkedHashSet<CommentEntity> comments = new LinkedHashSet<>();
+        LinkedList<CommentEntity> comments = new LinkedList<>();
         comments.add(CommentEntity.builder()
                 .content("comment one")
                 .build());

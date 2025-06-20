@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.enricogiurin.poc.springdatajpa.entity.CommentEntity;
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration;
@@ -26,8 +25,14 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 class PostRepositoryTest {
 
+    @Autowired
+    PostRepository postRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
+
     @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15")
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest")
         .withDatabaseName("testdb")
         .withUsername("test")
         .withPassword("test");
@@ -39,14 +44,10 @@ class PostRepositoryTest {
         registry.add("spring.datasource.password", postgres::getPassword);
     }
 
-    @Autowired
-    PostRepository postRepository;
 
-    @Autowired
-    CommentRepository commentRepository;
 
     @Sql({  "/sql/cleanup.sql",
-        "/sql/populate.sql"
+        "/sql/populate-all.sql"
     })
     @Test
     void findById(){
@@ -58,7 +59,7 @@ class PostRepositoryTest {
 
     @Test
     @Sql({  "/sql/cleanup.sql",
-        "/sql/populate.sql"
+        "/sql/populate-all.sql"
     })
     void deletePost(){
         postRepository.deleteAll();
@@ -72,7 +73,7 @@ class PostRepositoryTest {
         List<PostEntity> posts = IntStream.rangeClosed(1, 200)
             .mapToObj(i -> PostEntity.builder()
                 .content("Post content #" + i)
-                .comments(Collections.emptySet())
+                .comments(Collections.emptyList())
                 .build())
             .collect(Collectors.toList());
         StopWatch sw = new StopWatch();

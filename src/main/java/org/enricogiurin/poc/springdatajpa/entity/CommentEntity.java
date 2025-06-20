@@ -29,7 +29,7 @@ public class CommentEntity {
     @Column(name="CONTENT", columnDefinition="TEXT")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "POST_ID")
     private PostEntity post;
 }

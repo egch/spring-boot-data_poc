@@ -1,5 +1,7 @@
 package org.enricogiurin.poc.springdatajpa.service;
 
+import jakarta.transaction.Transactional;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.enricogiurin.poc.springdatajpa.entity.CommentEntity;
@@ -17,6 +19,7 @@ public class PostService {
     private final CommentRepository commentRepository;
 
 
+    @Transactional
     public Long addPost(String content){
         PostEntity post = PostEntity.builder()
                 .content(content)
@@ -37,6 +40,15 @@ public class PostService {
         CommentEntity save = commentRepository.save(commentEntity);
         log.info("Created a new comment with id: {}", save.getId());
         return save.getId();
+    }
+
+    @Transactional
+    public void addComments(List<CommentEntity> comments, Long postId){
+        PostEntity postEntity = postRepository.findById(postId)
+            .orElseThrow(() -> new IllegalArgumentException("no post with id: " + postId));
+        postEntity.getComments().addAll(comments);
+        postRepository.save(postEntity);
+
     }
 
 
