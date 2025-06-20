@@ -8,7 +8,6 @@ import org.enricogiurin.poc.springdatajpa.entity.CommentEntity;
 import org.enricogiurin.poc.springdatajpa.entity.PostEntity;
 import org.enricogiurin.poc.springdatajpa.repository.CommentRepository;
 import org.enricogiurin.poc.springdatajpa.repository.PostRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.TestDatabaseAutoConfiguration;
@@ -47,11 +46,6 @@ class PostServiceTest {
         registry.add("spring.datasource.url", postgres::getJdbcUrl);
         registry.add("spring.datasource.username", postgres::getUsername);
         registry.add("spring.datasource.password", postgres::getPassword);
-    }
-
-    @BeforeEach
-    void setUp() {
-        this.postService = new PostService(postRepository, commentRepository);
     }
 
     @Test
